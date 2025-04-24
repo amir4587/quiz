@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz om Internets Historia</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Ljusblå bakgrund */
+        }
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 kolumner */
+            gap: 20px; /* Mellanrum mellan lådorna */
+        }
+        .question-box {
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 200px; /* Fixerad höjd */
+            width: 100%; /* Lådorna tar upp hela bredden av cellen */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .quiz-images {
+            margin-bottom: 30px;
+        }
+        .question-box h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .question-box input {
+            margin-bottom: 5px;
+        }
+        @media (max-width: 991.98px) { /* Används för mindre skärmar */
+            .question-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolumner på mindre skärmar */
+            }
+            .question-box {
+                height: auto; /* Ta bort fixerad höjd på mindre skärmar */
+            }
+        }
+    </style>
+    <script>
+        var visaAntalRatt = "ja";
+        var text = ["Antal korrekta svar", "Av antal", "Procentsats"];
+
+        function ratta() {
+            var antalRatt = 0;
+            var i = 1;
+            while (typeof (eval("document.fragefalt.svar" + i)) == "object") {
+                for (var j = 0; j < eval("document.fragefalt.svar" + i + ".length"); j++) {
+                    if (eval("document.fragefalt.svar" + i + "[" + j + "].checked") && eval("document.fragefalt.svar" + i + "[" + j + "].value") == "true") {
+                        antalRatt++;
+                        break;
+                    }
+                }
+                i++;
+            }
+            i--;
+
+            if (visaAntalRatt == "ja") {
+                alert(text[0] + ": " + antalRatt + "\n" + text[1] + ": " + i + "\n" + text[2] + ": " + Math.round(antalRatt / i * 100) + "%");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center mt-4">Quiz om Internets Historia</h1>
+
+        <!-- Bilderna över frågorna -->
+        <div class="row quiz-images justify-content-center">
+            <div class="col-md-4">
+                <img src="https://example.com/image1.jpg" alt="Bild 1 - ARPANET" class="img-fluid">
+            </div>
+            <div class="col-md-4">
+                <img src="https://example.com/image2.jpg" alt="Bild 2 - Tim Berners-Lee" class="img-fluid">
+            </div>
+            <div class="col-md-4">
+                <img src="https://example.com/image3.jpg" alt="Bild 3 - World Wide Web" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- Frågor i kvadratiska lådor, 4 frågor per rad -->
+        <form name="fragefalt" class="question-grid">
+            <!-- Fråga 1 till 12, i kvadratiska lådor -->
+            <div class="question-box">
+                <h4>Fråga 1: När skapades ARPANET?</h4>
+                <input type="radio" name="svar1" value="false"> 1959<br>
+                <input type="radio" name="svar1" value="true"> 1969<br>
+                <input type="radio" name="svar1" value="false"> 1979
+            </div>
+            <div class="question-box">
+                <h4>Fråga 2: Vem uppfann World Wide Web?</h4>
+                <input type="radio" name="svar2" value="true"> Tim Berners-Lee<br>
+                <input type="radio" name="svar2" value="false"> Bill Gates<br>
+                <input type="radio" name="svar2" value="false"> Steve Jobs
+            </div>
+            <div class="question-box">
+                <h4>Fråga 3: Vilket år blev e-post allmänt tillgängligt?</h4>
+                <input type="radio" name="svar3" value="false"> 1980<br>
+                <input type="radio" name="svar3" value="true"> 1971<br>
+                <input type="radio" name="svar3" value="false"> 1990
+            </div>
+            <div class="question-box">
+                <h4>Fråga 4: Vilket företag skapade den första webbläsaren, Mosaic?</h4>
+                <input type="radio" name="svar4" value="false"> Microsoft<br>
+                <input type="radio" name="svar4" value="true"> NCSA<br>
+                <input type="radio" name="svar4" value="false"> Google
+            </div>
+            <div class="question-box">
+                <h4>Fråga 5: När kom den första webbläsaren?</h4>
+                <input type="radio" name="svar5" value="false"> 1991<br>
+                <input type="radio" name="svar5" value="true"> 1993<br>
+                <input type="radio" name="svar5" value="false"> 1995
+            </div>
+            <div class="question-box">
+                <h4>Fråga 6: Vilket år blev Google grundat?</h4>
+                <input type="radio" name="svar6" value="true"> 1998<br>
+                <input type="radio" name="svar6" value="false"> 2000<br>
+                <input type="radio" name="svar6" value="false"> 2002
+            </div>
+            <div class="question-box">
+                <h4>Fråga 7: Vad står HTTP för?</h4>
+                <input type="radio" name="svar7" value="false"> HyperText Process Protocol<br>
+                <input type="radio" name="svar7" value="true"> HyperText Transfer Protocol<br>
+                <input type="radio" name="svar7" value="false"> HyperText Transaction Protocol
+            </div>
+            <div class="question-box">
+                <h4>Fråga 8: Vilket år lanserades Facebook?</h4>
+                <input type="radio" name="svar8" value="false"> 2002<br>
+                <input type="radio" name="svar8" value="true"> 2004<br>
+                <input type="radio" name="svar8" value="false"> 2006
+            </div>
+            <div class="question-box">
+                <h4>Fråga 9: Vem skapade Linux?</h4>
+                <input type="radio" name="svar9" value="false"> Bill Gates<br>
+                <input type="radio" name="svar9" value="true"> Linus Torvalds<br>
+                <input type="radio" name="svar9" value="false"> Steve Jobs
+            </div>
+            <div class="question-box">
+                <h4>Fråga 10: Vad står URL för?</h4>
+                <input type="radio" name="svar10" value="false"> Uniform Resource Locator<br>
+                <input type="radio" name="svar10" value="true"> Uniform Resource Locator<br>
+                <input type="radio" name="svar10" value="false"> Universal Resource Locator
+            </div>
+            <div class="question-box">
+                <h4>Fråga 11: Vilken standard används för
